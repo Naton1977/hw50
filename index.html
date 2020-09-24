@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function Shape(name) {
+        this.name = name;
+    }
+
+    function Rectangle(side1, side2) {
+        Shape.call(this, "Прямоугольник");
+        this.side1 = side1;
+        this.side2 = side2;
+    }
+
+    function Ellipse(halfShaftA, halfShaftB) {
+        Shape.call(this, "Элипс");
+        this.halfShaftA = halfShaftA;
+        this.halfShaftB = halfShaftB;
+    }
+
+    Ellipse.prototype = Object.create(Shape.prototype);
+    Ellipse.prototype.constructor = Ellipse;
+    Rectangle.prototype = Object.create(Shape.prototype);
+    Rectangle.prototype.constructor = Rectangle;
+
+
+    Ellipse.prototype.toString = function () {
+        document.writeln("<br/>" + this.name + " " + " а = " + this.halfShaftA + " " + " b = " + this.halfShaftB);
+    }
+
+
+    Rectangle.prototype.toString = function () {
+        document.writeln("<br/>" + this.name + " " + this.side1 + "x" + this.side2);
+    }
+
+    Rectangle.prototype.area = function () {
+        document.writeln("<br/>" + "Площадь : " + this.name + " = " + this.side1 * this.side2);
+    }
+
+    Ellipse.prototype.area = function () {
+        document.writeln("<br/>" + "Площадь  : " + this.name + " = " + Math.PI * this.halfShaftA * this.halfShaftB);
+    }
+
+
+    let Rect = new Rectangle(10, 20);
+    Rect.toString();
+    Rect.area();
+
+    let Elips = new Ellipse(10, 20);
+    Elips.toString();
+    Elips.area();
+
+    function Square(side) {
+        this.name = "Квадрат";
+        this.side1 = side;
+        this.side2 = side;
+    }
+
+    function Circle(radius) {
+        this.name = "Круг";
+        this.halfShaftA = radius;
+        this.halfShaftB = radius;
+    }
+
+    Square.prototype = Object.create(Rectangle.prototype);
+    Square.prototype.constructor = Square;
+
+
+    Circle.prototype = Object.create(Ellipse.prototype);
+    Circle.prototype.constructor = Circle;
+
+    let Sqr = new Square(10);
+    Sqr.toString();
+    Sqr.area();
+
+    let Crc = new Circle(10);
+    Crc.toString();
+    Crc.area();
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
